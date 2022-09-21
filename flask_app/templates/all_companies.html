@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Companies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div id="container" class="container" style = "bg-info.bg-gradient">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/user_page">Home</a>
+                <a class="nav-link" href="add_new_company">Add A New Company</a>
+                <a class="nav-link" href="/Parameters_meanings">Parameters meanings</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </nav>
+        {% for company in data %}
+            <table class="table">
+                <tr>
+                    <th scope="col">symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Market_Cap</th>
+                    <th scope="col">P/E Ratio</th>
+                    <th scope="col">EPS</th>
+                    <th scope="col">Volume</th>
+                    <th scope="col">Avg_Volume</th>
+                    <th scope="col">dividendYield</th>
+                    <th scope="col">regularMarketPrice</th>
+                </tr>
+                <tr>
+                    <td scope="row" class="table-primary">{{company.Name}}</td>
+                    <td class="table-primary">{{company.symbol}}</td>
+                    <td class="table-primary">{{company.Market_Cap}}</td>
+                    <td class="table-primary">{{company.PE_Ratio}}</td>
+                    <td class="table-primary">{{company.EPS}}</td>
+                    <td class="table-primary">{{company.Volume}}</td>
+                    <td class="table-primary">{{company.Avg_Volume}}</td>
+                    <td class="table-primary">{{company.dividendYield}}</td>
+                    <td class="table-primary">{{company.regularMarketPrice}}</td>
+                </tr>
+            </table>
+            <table class="table">
+                    <th scope="col">fiftyTwoWeekLow</th>
+                    <th scope="col">fiftyTwoWeekHigh</th>
+                    <th scope="col">revenuePerShare</th>
+                    <th scope="col">totalRevenue</th>
+                    <th scope="col">totalDebt</th>
+                    <th scope="col">totalCash</th>
+                    <th scope="col">currentRatio</th>
+                    <th scope="col">recommendationKey</th>
+                </tr>
+                <tr>
+                    <td class="table-primary">{{company.fiftyTwoWeekLow}}</td>
+                    <td class="table-primary">{{company.fiftyTwoWeekHigh}}</td>
+                    <td class="table-primary">{{company.revenuePerShare}}</td>
+                    <td class="table-primary">{{company.totalRevenue}}</td>
+                    <td class="table-primary">{{company.totalDebt}}</td>
+                    <td class="table-primary">{{company.totalCash}}</td>
+                    <td class="table-primary">{{company.currentRatio}}</td>
+                    <td class="table-primary">{{company.recommendationKey}}</td>
+                </tr>
+            </table>
+            <h3>longBusinessSummary:</h3>
+            <p>{{company.longBusinessSummary}}</p>
+            <form action="save_new_company" method = "post" class="mb-3">
+                <input type="hidden" name = "symbol" value = "{{company.symbol}}">
+                <input type="submit" value="Add Company">
+            </form>
+            {% endfor %}
+    </div>
+</body>
+</html>
